@@ -1,7 +1,8 @@
 package com.alavan.decorator;
 
-import java.io.*;
-
+/**
+ * @author Alavande
+ */
 public class Client {
 
     public static void main(String[] args) {

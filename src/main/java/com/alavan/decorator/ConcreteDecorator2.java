@@ -1,5 +1,8 @@
 package com.alavan.decorator;
 
+/**
+ * @author Alavande
+ */
 public class ConcreteDecorator2 extends Decorator {
 
     public ConcreteDecorator2(Component component) {

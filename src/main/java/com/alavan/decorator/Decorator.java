@@ -12,6 +12,7 @@ public class Decorator implements Component {
         this.component = component;
     }
 
+    @Override
     public void doSomething() {
         // 交由引用来实现继承的方法
         component.doSomething();
