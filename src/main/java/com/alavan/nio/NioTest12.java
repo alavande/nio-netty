@@ -34,7 +34,7 @@ public class NioTest12 {
             ports[i] = 5000 + i;
 
             ServerSocketChannel serverSocketChannel = ServerSocketChannel.open();
-            // 调整 channel 的阻塞模式
+            // 调整 channel 的阻塞模式, 配置为非阻塞的
             serverSocketChannel.configureBlocking(false);
             ServerSocket serverSocket = serverSocketChannel.socket();
             InetSocketAddress address = new InetSocketAddress(ports[i]);
