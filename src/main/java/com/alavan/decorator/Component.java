@@ -3,7 +3,7 @@ package com.alavan.decorator;
 /**
  * @author Alavande
  */
-public interface Component {
+interface Component {
 
     /**
      * 方法

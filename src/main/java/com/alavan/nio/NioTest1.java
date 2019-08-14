@@ -25,14 +25,14 @@ public class NioTest1 {
         System.out.println(String.format("flip 前 limit: %s, position: %s",
                 buffer.limit(), buffer.position()));
 
-        /**
-         * 写完后翻转 buffer 以开始读取
-         * flip() 方法:
-         * <code>
-         *     limit = position;
-         *     position = 0;
-         *     mark = -1;
-         * </code>
+        /*
+          写完后翻转 buffer 以开始读取
+          flip() 方法:
+          <code>
+              limit = position;
+              position = 0;
+              mark = -1;
+          </code>
          */
         buffer.flip();
 

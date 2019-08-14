@@ -2,6 +2,7 @@ package com.alavan.nio;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
+import java.nio.Buffer;
 import java.nio.ByteBuffer;
 import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
@@ -19,7 +20,7 @@ public class NioTest11 {
      * 不要用 {@link Executors} 来创建线程池
      * 用 {@link ThreadPoolExecutor} 定义各种变量
      */
-    private static Executor executor =
+    private static final Executor executor =
             new ThreadPoolExecutor(10, 20, 60,
             TimeUnit.SECONDS, new LinkedBlockingQueue<>(10),
                     Executors.defaultThreadFactory(), new ThreadPoolExecutor.DiscardPolicy());
@@ -64,14 +65,14 @@ public class NioTest11 {
 
                         System.out.println("byteRead: " + byteRead);
 
-                        Arrays.asList(buffers).stream()
+                        Arrays.stream(buffers)
                                 .map(buffer ->
                                         String.format("position: %s, limit: %s",
                                                 buffer.position(), buffer.limit()))
                                 .forEach(System.out::println);
                     }
 
-                    Arrays.asList(buffers).forEach(buffer -> buffer.flip());
+                    Arrays.asList(buffers).forEach(Buffer::flip);
 
                     int byteWritten = 0;
                     while (byteWritten < msgLength && byteWritten >= 0) {
@@ -89,7 +90,7 @@ public class NioTest11 {
                         byteWritten += r;
                     }
 
-                    Arrays.asList(buffers).forEach(byteBuffer -> byteBuffer.clear());
+                    Arrays.asList(buffers).forEach(Buffer::clear);
 
                     System.out.println(String.format("byteRead: %s, byteWritten: %s, msgLength: %s",
                             byteRead, byteWritten, msgLength));

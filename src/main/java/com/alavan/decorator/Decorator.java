@@ -6,9 +6,9 @@ package com.alavan.decorator;
  */
 public class Decorator implements Component {
 
-    private Component component;
+    private final Component component;
 
-    public Decorator(Component component) {
+    Decorator(Component component) {
         this.component = component;
     }
 

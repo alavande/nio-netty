@@ -17,8 +17,8 @@ public class NioTest3 {
         ByteBuffer buffer = ByteBuffer.allocate(1024);
         byte[] msg = "hello world, welcome".getBytes();
 
-        for (int i = 0; i < msg.length; i++) {
-            buffer.put(msg[i]);
+        for (byte b : msg) {
+            buffer.put(b);
         }
 
         buffer.flip();
