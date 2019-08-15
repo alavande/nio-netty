@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>WebSocket 客户端</title>
+    <meta charset="utf-8">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimal-ui">
+    <style>
+        #skip a {  position:absolute;  left:-10000px;  top:auto;  width:1px;  height:1px;  overflow:hidden;  }
+        #skip a:focus {  position:static;  width:auto;  height:auto;  }
+    </style>
+</head>
+<body>
+
+<script type="text/javascript">
+
+    var socket;
+
+    if (window.WebSocket) {
+
+        socket = new WebSocket("ws://localhost:8899/ws");
+        socket.onmessage = function (ev) {
+            var ta = document.getElementById("responseText");
+            ta.value += "\n" + ev.data;
+        }
+
+        socket.onopen = function (ev) {
+            var ta = document.getElementById("responseText");
+            ta.value = "连接开启";
+        }
+
+        socket.onclose = function (ev) {
+            var ta = document.getElementById("responseText");
+            ta.value += "\n连接断开";
+        }
+
+    } else {
+        alert('浏览器不支持 websocket !')
+    }
+
+    function send(msg) {
+        if (!window.WebSocket) {
+            return;
+        }
+
+        if (socket.readyState === WebSocket.OPEN) {
+            socket.send(msg)
+        } else {
+            alert("连接尚未开启......")
+        }
+    }
+
+</script>
+
+<form onsubmit="return false;">
+    <textarea name="message" style="width: 400px; height: 200px;"></textarea>
+
+    <input type="button" value="发送数据" onclick="send(this.form.message.value)"/>
+
+    <h3>服务端输出: </h3>
+
+    <textarea id="responseText" style="width: 400px; height: 200px;"></textarea>
+
+    <input type="button" onclick="javascript: document.getElementById('responseText').value=''" value="清空内容">
+</form>
+
+
+</body>
+</html>
