@@ -29,6 +29,8 @@ public class WebSocketChannelInitializer extends ChannelInitializer<SocketChanne
         // Byte, Continue, Ping, Pong, Close, Text
         // websocketPath: ws://server:port/context_path, 有自己的协议格式
         // "/ws" 指定的就是 context_path
+        // Websocket 是 http 的升级连接, 通过一个 http 连接的升级获得
+        // 客户端和服务器间将获得一个全双工的连接
         pipeline.addLast(new WebSocketServerProtocolHandler("/ws"));
 
         pipeline.addLast(new TextWebsocketFrameHandler());

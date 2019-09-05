@@ -9,6 +9,7 @@ import io.netty.handler.logging.LogLevel;
 import io.netty.handler.logging.LoggingHandler;
 
 /**
+ * WebSocket 测试
  * @author Alavande
  */
 public class MyChatServer {

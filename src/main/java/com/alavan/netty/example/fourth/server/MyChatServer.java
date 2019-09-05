@@ -9,6 +9,7 @@ import io.netty.handler.logging.LogLevel;
 import io.netty.handler.logging.LoggingHandler;
 
 /**
+ * 心跳检测
  * @author Alavande
  */
 public class MyChatServer {

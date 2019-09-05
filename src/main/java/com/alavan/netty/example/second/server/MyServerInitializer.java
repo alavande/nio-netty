@@ -17,6 +17,7 @@ public class MyServerInitializer extends ChannelInitializer<SocketChannel> {
     protected void initChannel(SocketChannel socketChannel) throws Exception {
         ChannelPipeline pipeline = socketChannel.pipeline();
 
+        // LengthFieldBasedFrameDecoder 用于解决数据的粘包问题
         pipeline.addLast(new LengthFieldBasedFrameDecoder(Integer.MAX_VALUE, 0, 4, 0, 4));
         pipeline.addLast(new LengthFieldPrepender(4));
         pipeline.addLast(new StringDecoder(CharsetUtil.UTF_8));

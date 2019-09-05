@@ -21,7 +21,7 @@ public class TestServer {
         EventLoopGroup workerGroup = new NioEventLoopGroup();
 
         try {
-            // 服务器启动引导类
+            // 服务器启动引导类, 简化 netty 服务器创建
             ServerBootstrap serverBootstrap = new ServerBootstrap();
             serverBootstrap
                     .group(bossGroup, workerGroup)
